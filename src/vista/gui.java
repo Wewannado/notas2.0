@@ -20,6 +20,11 @@ import javax.swing.JDialog;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class gui extends javax.swing.JFrame {
 
@@ -29,7 +34,40 @@ public class gui extends javax.swing.JFrame {
 
     public gui() {
         initComponents();
+        //Rellenamos procedimiento
+        ((JComponent) TaskPaneEnlaceMira.getContentPane()).setBorder(BorderFactory.createEmptyBorder());
+        textFieldEnlace = new JTextField();
+        TaskPaneEnlaceMira.add(textFieldEnlace);
+
+        //Rellenamos gestion
+        ((JComponent) TaskPaneGestion.getContentPane()).setBorder(BorderFactory.createEmptyBorder());
+        textAreaGestion = new JTextArea("Gestion!");
+        textAreaGestion.setLineWrap(true);
+        textAreaGestion.setRows(10);
+
+        TaskPaneGestion.add(textAreaGestion);
+        copiarAPruebas = new JButton("Copiar a resumen de pruebas");
+        copiarAPruebas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                copiarAPruebas(evt);
+            }
+        });
+        TaskPaneGestion.add(copiarAPruebas);
+
+        //Rellenamos resumen
+        textAreaResumenPruebas = new JTextArea();
+        TaskPaneResumenDePruebas.add(textAreaResumenPruebas);
+
+        //Rellenamos contacto cliente
+        textAreaContacto = new JTextArea("Roger!");
+        TaskPaneContacto.add(textAreaContacto);
+
+        //Rellenamos siguiente
+        textAreaSiguiente = new JTextArea("Siguiente!");
+        TaskPaneSiguiente.add(textAreaSiguiente);
+
         about = new About2(this, true);
+        this.pack();
     }
 
     /**
@@ -41,21 +79,17 @@ public class gui extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        EnlaceMiraLabel = new javax.swing.JLabel();
-        textEnlaceMiraa = new javax.swing.JTextField();
-        GestionMiraaLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        textGestionMiraa = new javax.swing.JTextArea();
-        ResumenDePruebasLabel = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        TextResumenPruebas = new javax.swing.JTextArea();
-        botonCopiarAResumenDePruebas = new javax.swing.JButton();
+        jXTaskPaneContainer = new org.jdesktop.swingx.JXTaskPaneContainer();
+        TaskPaneEnlaceMira = new org.jdesktop.swingx.JXTaskPane();
+        TaskPaneGestion = new org.jdesktop.swingx.JXTaskPane();
+        TaskPaneResumenDePruebas = new org.jdesktop.swingx.JXTaskPane();
+        TaskPaneContacto = new org.jdesktop.swingx.JXTaskPane();
+        TaskPaneSiguiente = new org.jdesktop.swingx.JXTaskPane();
+        jPanel1 = new javax.swing.JPanel();
         copiarAPortapapeles = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        siguienteLabel = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        TextSiguiente = new javax.swing.JTextArea();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuBar = new javax.swing.JMenuBar();
         FileItem = new javax.swing.JMenu();
         exitItemMenu = new javax.swing.JMenuItem();
         setingsItem = new javax.swing.JMenu();
@@ -64,30 +98,32 @@ public class gui extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        EnlaceMiraLabel.setText("Enlace Miraa");
+        jXTaskPaneContainer.setBackground(new java.awt.Color(240, 240, 240));
+        jXTaskPaneContainer.setAutoscrolls(true);
 
-        GestionMiraaLabel.setText("Gestión Miraa");
+        TaskPaneEnlaceMira.setTitle("Procedimiento");
+        jXTaskPaneContainer.add(TaskPaneEnlaceMira);
 
-        textGestionMiraa.setColumns(20);
-        textGestionMiraa.setLineWrap(true);
-        textGestionMiraa.setRows(5);
-        jScrollPane1.setViewportView(textGestionMiraa);
+        TaskPaneGestion.setTitle("Gestión");
+        jXTaskPaneContainer.add(TaskPaneGestion);
 
-        ResumenDePruebasLabel.setText("Resumen de pruebas");
+        TaskPaneResumenDePruebas.setToolTipText("");
+        TaskPaneResumenDePruebas.setCollapsed(true);
+        TaskPaneResumenDePruebas.setName(""); // NOI18N
+        TaskPaneResumenDePruebas.setTitle("Resumen de pruebas");
+        jXTaskPaneContainer.add(TaskPaneResumenDePruebas);
 
-        TextResumenPruebas.setColumns(20);
-        TextResumenPruebas.setLineWrap(true);
-        TextResumenPruebas.setRows(5);
-        jScrollPane2.setViewportView(TextResumenPruebas);
+        TaskPaneContacto.setCollapsed(true);
+        TaskPaneContacto.setTitle("Contacto Cliente");
+        jXTaskPaneContainer.add(TaskPaneContacto);
 
-        botonCopiarAResumenDePruebas.setText("Copiar a resumen de pruebas");
-        botonCopiarAResumenDePruebas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCopiarAResumenDePruebasActionPerformed(evt);
-            }
-        });
+        TaskPaneSiguiente.setTitle("Siguiente");
+        jXTaskPaneContainer.add(TaskPaneSiguiente);
+
+        jScrollPane1.setViewportView(jXTaskPaneContainer);
 
         copiarAPortapapeles.setText("Copiar a portapapeles");
+        copiarAPortapapeles.setMargin(null);
         copiarAPortapapeles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 copiarAPortapapelesActionPerformed(evt);
@@ -96,11 +132,32 @@ public class gui extends javax.swing.JFrame {
 
         jButton2.setText("Procesar desde portapapeles");
 
-        siguienteLabel.setText("Siguiente");
-
-        TextSiguiente.setColumns(20);
-        TextSiguiente.setRows(2);
-        jScrollPane3.setViewportView(TextSiguiente);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(232, 232, 232)
+                .addComponent(jButton2)
+                .addContainerGap(310, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(413, Short.MAX_VALUE)
+                    .addComponent(copiarAPortapapeles)
+                    .addContainerGap(11, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(copiarAPortapapeles)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
 
         FileItem.setText("File");
 
@@ -113,10 +170,10 @@ public class gui extends javax.swing.JFrame {
         });
         FileItem.add(exitItemMenu);
 
-        jMenuBar1.add(FileItem);
+        jMenuBar.add(FileItem);
 
         setingsItem.setText("Settings");
-        jMenuBar1.add(setingsItem);
+        jMenuBar.add(setingsItem);
 
         helpItem.setText("Help");
 
@@ -128,65 +185,24 @@ public class gui extends javax.swing.JFrame {
         });
         helpItem.add(aboutItemMenu);
 
-        jMenuBar1.add(helpItem);
+        jMenuBar.add(helpItem);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jScrollPane2)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(EnlaceMiraLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textEnlaceMiraa, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(GestionMiraaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(ResumenDePruebasLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonCopiarAResumenDePruebas))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(172, 172, 172)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(copiarAPortapapeles))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(siguienteLabel)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+            .addComponent(jScrollPane1)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EnlaceMiraLabel)
-                    .addComponent(textEnlaceMiraa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(GestionMiraaLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ResumenDePruebasLabel)
-                    .addComponent(botonCopiarAResumenDePruebas))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(siguienteLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(copiarAPortapapeles)
-                    .addComponent(jButton2))
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -200,19 +216,23 @@ public class gui extends javax.swing.JFrame {
         about.setVisible(true);
     }//GEN-LAST:event_aboutItemMenuActionPerformed
 
-    private void botonCopiarAResumenDePruebasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCopiarAResumenDePruebasActionPerformed
-        TextResumenPruebas.setText(TextResumenPruebas.getText() + lsp + (textGestionMiraa.getText()));
-    }//GEN-LAST:event_botonCopiarAResumenDePruebasActionPerformed
-
     private void copiarAPortapapelesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copiarAPortapapelesActionPerformed
         int fillerSize = 50;
-        String nota = fillText(EnlaceMiraLabel.getText(), separator, fillerSize) + lsp + textEnlaceMiraa.getText() + lsp + lsp;
-        nota = nota + fillText(GestionMiraaLabel.getText(), separator, fillerSize) + lsp + textGestionMiraa.getText() + lsp + lsp;
-        nota = nota + fillText(ResumenDePruebasLabel.getText(), separator, fillerSize) + lsp + TextResumenPruebas.getText() + lsp + lsp;
-        nota = nota + fillText(siguienteLabel.getText(), separator, fillerSize) + lsp + TextSiguiente.getText();
+        String nota = fillText(TaskPaneEnlaceMira.getTitle(), separator, fillerSize) + lsp + textFieldEnlace.getText() + lsp + lsp;
+        nota = nota + fillText(TaskPaneGestion.getTitle(), separator, fillerSize) + lsp + textAreaGestion.getText() + lsp + lsp;
+        nota = nota + fillText(TaskPaneResumenDePruebas.getTitle(), separator, fillerSize) + lsp + textAreaResumenPruebas.getText() + lsp + lsp;
+        nota = nota + fillText(TaskPaneSiguiente.getTitle(), separator, fillerSize) + lsp + textAreaSiguiente.getText();
         Clipboard clipboard = getToolkit().getSystemClipboard();
         clipboard.setContents(new StringSelection(nota), null);
     }//GEN-LAST:event_copiarAPortapapelesActionPerformed
+
+    private void copiarAPruebas(java.awt.event.ActionEvent evt) {
+        if (textAreaResumenPruebas.getText().equals("")) {
+            textAreaResumenPruebas.setText(textAreaGestion.getText());
+        } else {
+            textAreaResumenPruebas.setText(textAreaResumenPruebas.getText().concat(lsp).concat(textAreaGestion.getText()));
+        }
+    }
 
     private String fillText(String text, String fill, int size) {
         String result = text;
@@ -226,25 +246,30 @@ public class gui extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel EnlaceMiraLabel;
     private javax.swing.JMenu FileItem;
-    private javax.swing.JLabel GestionMiraaLabel;
-    private javax.swing.JLabel ResumenDePruebasLabel;
-    private javax.swing.JTextArea TextResumenPruebas;
-    private javax.swing.JTextArea TextSiguiente;
+    private org.jdesktop.swingx.JXTaskPane TaskPaneContacto;
+    private org.jdesktop.swingx.JXTaskPane TaskPaneEnlaceMira;
+    private org.jdesktop.swingx.JXTaskPane TaskPaneGestion;
+    private org.jdesktop.swingx.JXTaskPane TaskPaneResumenDePruebas;
+    private org.jdesktop.swingx.JXTaskPane TaskPaneSiguiente;
     private javax.swing.JMenuItem aboutItemMenu;
-    private javax.swing.JButton botonCopiarAResumenDePruebas;
     private javax.swing.JButton copiarAPortapapeles;
     private javax.swing.JMenuItem exitItemMenu;
     private javax.swing.JMenu helpItem;
     private javax.swing.JButton jButton2;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
+    private org.jdesktop.swingx.JXTaskPaneContainer jXTaskPaneContainer;
     private javax.swing.JMenu setingsItem;
-    private javax.swing.JLabel siguienteLabel;
-    private javax.swing.JTextField textEnlaceMiraa;
-    private javax.swing.JTextArea textGestionMiraa;
     // End of variables declaration//GEN-END:variables
+
+    //Custom variables declaration
+    private JTextField textFieldEnlace;
+    private JTextArea textAreaGestion;
+    private JButton copiarAPruebas;
+    private JTextArea textAreaResumenPruebas;
+    private JTextArea textAreaContacto;
+    private JTextArea textAreaSiguiente;
+    //End of custom variables declaration
 }
