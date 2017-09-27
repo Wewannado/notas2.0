@@ -14,18 +14,31 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package vista;
+package controller;
 
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 import javax.swing.JFrame;
+import vista.gui;
 
 public class Main {
 
-    public static void main(String[] args) {
+    Properties props = new Properties();
+
+    public static void main(String[] args) throws IOException {
+        Main main = new Main();
+        main.inici();
+    }
+
+    public void inici() throws IOException {
+        props.load(this.getClass().getResourceAsStream("/system.conf"));
+
         JFrame gui = new gui();
-        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();   
-        gui.setLocation(gd.getDisplayMode().getWidth()-gui.getWidth(), gd.getDisplayMode().getHeight()-gui.getHeight()-40);
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        gui.setLocation(gd.getDisplayMode().getWidth() - gui.getWidth(), gd.getDisplayMode().getHeight() - gui.getHeight() - 40);
         gui.setTitle("Notas 2.0");
         gui.setVisible(true);
     }

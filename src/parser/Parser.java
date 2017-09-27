@@ -37,8 +37,8 @@ public class Parser {
             //mirem si trobem en l'input el text seleccionat.
             argument.forEach((String regex) -> {
                 String[] result=input.split("\n");
-                output[aux]=String.valueOf(result[aux]);
-                aux++;
+                //output[aux]=String.valueOf(result[aux]);
+                //aux++;
                 System.out.println(regex);
             });
             System.out.println("Fi darray");
