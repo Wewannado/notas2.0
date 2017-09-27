@@ -1,0 +1,8 @@
+
+********Wed Sep 27 23:55:05 CEST 2017********
+java.lang.NullPointerException
+	at java.util.Properties$LineReader.readLine(Properties.java:434)
+	at java.util.Properties.load0(Properties.java:353)
+	at java.util.Properties.load(Properties.java:341)
+	at controller.Main.inici(Main.java:47)
+	at controller.Main.main(Main.java:40)
