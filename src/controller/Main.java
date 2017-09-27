@@ -46,29 +46,25 @@ public class Main {
             InputStream in = this.getClass().getResourceAsStream("/system.conf");
             props.load(in);
             JFrame gui = new gui();
+            gui.setSize(350, 570);
             gui.setLocation(gd.getDisplayMode().getWidth() - gui.getWidth(), gd.getDisplayMode().getHeight() - gui.getHeight() - 40);
             gui.setTitle("Notas 2.0");
             gui.setVisible(true);
         } catch (NullPointerException | IOException ex) {
             //An error has ocurred, and the program must not run.
             boolean errorLogged = false;
-            PrintWriter pout = null;
-            try {
-                pout = new PrintWriter(new FileWriter(ERROR_FILE, true));
+            try (PrintWriter pout = new PrintWriter(new FileWriter(ERROR_FILE, true))) {
                 pout.print((System.getProperty("line.separator") + "********" + Calendar.getInstance().getTime().toString() + "********" + System.getProperty("line.separator")));
                 ex.printStackTrace(pout);
-                //System.out.println(ex.printStackTrace());
                 System.err.println("Error logged");
                 errorLogged = true;
             } catch (IOException ex1) {
                 System.err.println("Fatal error! We cannot even log it!");
             } finally {
-                if (pout != null) {
-                    pout.close();
-                }
+                //Alert the user about the error.
                 String error;
                 if (errorLogged) {
-                    error = "Error loading conf file. \nSee "+ERROR_FILE+ " for details.";
+                    error = "Error loading conf file. \nSee " + ERROR_FILE + " for details.";
                 } else {
                     error = "Error loading conf file. \nFurthermore, no log can be generated.\n\nAre you root?";
                 }

@@ -40,7 +40,7 @@ public class gui extends javax.swing.JFrame {
 
         //Rellenamos gestion
         ((JComponent) TaskPaneGestion.getContentPane()).setBorder(BorderFactory.createEmptyBorder());
-        textAreaGestion = new JTextArea("Gestion!");
+        textAreaGestion = new JTextArea();
         textAreaGestion.setLineWrap(true);
         textAreaGestion.setRows(10);
 
@@ -54,15 +54,18 @@ public class gui extends javax.swing.JFrame {
         TaskPaneGestion.add(copiarAPruebas);
 
         //Rellenamos resumen
+        ((JComponent) TaskPaneResumenDePruebas.getContentPane()).setBorder(BorderFactory.createEmptyBorder());
         textAreaResumenPruebas = new JTextArea();
         TaskPaneResumenDePruebas.add(textAreaResumenPruebas);
 
         //Rellenamos contacto cliente
-        textAreaContacto = new JTextArea("Roger!");
+        ((JComponent) TaskPaneContacto.getContentPane()).setBorder(BorderFactory.createEmptyBorder());
+        textAreaContacto = new JTextArea();
         TaskPaneContacto.add(textAreaContacto);
 
         //Rellenamos siguiente
-        textAreaSiguiente = new JTextArea("Siguiente!");
+        ((JComponent) TaskPaneSiguiente.getContentPane()).setBorder(BorderFactory.createEmptyBorder());
+        textAreaSiguiente = new JTextArea();
         TaskPaneSiguiente.add(textAreaSiguiente);
 
         about = new About2(this, true);
@@ -99,6 +102,9 @@ public class gui extends javax.swing.JFrame {
 
         jXTaskPaneContainer.setBackground(new java.awt.Color(240, 240, 240));
         jXTaskPaneContainer.setAutoscrolls(true);
+        org.jdesktop.swingx.VerticalLayout verticalLayout3 = new org.jdesktop.swingx.VerticalLayout();
+        verticalLayout3.setGap(14);
+        jXTaskPaneContainer.setLayout(verticalLayout3);
 
         TaskPaneEnlaceMira.setTitle("Procedimiento");
         jXTaskPaneContainer.add(TaskPaneEnlaceMira);
@@ -136,9 +142,9 @@ public class gui extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(232, 232, 232)
-                .addComponent(jButton2)
-                .addContainerGap(310, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addContainerGap(413, Short.MAX_VALUE)
@@ -192,7 +198,7 @@ public class gui extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -264,11 +270,11 @@ public class gui extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     //Custom variables declaration
-    private JTextField textFieldEnlace;
-    private JTextArea textAreaGestion;
-    private JButton copiarAPruebas;
-    private JTextArea textAreaResumenPruebas;
-    private JTextArea textAreaContacto;
-    private JTextArea textAreaSiguiente;
+    private final JTextField textFieldEnlace;
+    private final JTextArea textAreaGestion;
+    private final JButton copiarAPruebas;
+    private final JTextArea textAreaResumenPruebas;
+    private final JTextArea textAreaContacto;
+    private final JTextArea textAreaSiguiente;
     //End of custom variables declaration
 }
